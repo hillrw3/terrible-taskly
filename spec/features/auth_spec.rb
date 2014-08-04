@@ -16,4 +16,10 @@ feature 'Auth' do
     expect(page).to have_content("user@example.com")
   end
 
+  scenario 'Users can see About screen' do
+    visit '/'
+    click_on "About"
+    expect(page).to have_content "About"
+  end
+
 end
