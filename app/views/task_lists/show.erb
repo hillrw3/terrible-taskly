@@ -1,0 +1,9 @@
+<div id="topbar"><h1>My Lists</h1></div>
+<div id="topbar"><a href="/task_lists/new">+ Add Task List</a></div>
+
+<h1><%= @task_list.name %></h1>
+<ul>
+  <% @tasks.each do |task| %>
+    <li><%= task.task %></li>
+  <% end %>
+</ul>

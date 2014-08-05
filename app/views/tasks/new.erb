@@ -1,0 +1,18 @@
+<h2>Add a task</h2>
+
+<% if flash[:notice] %>
+  <div class="errors"><%= flash[:notice] %></div>
+<% end %>
+
+<%= form_for @task do |f| %>
+  <% if flash[:notice] %>
+    <div class="errors"><%= f.label :task, "Description" %></div>
+  <% else %>
+    <%= f.label :task, "Description" %><br>
+  <% end %>
+  <%= f.text_field :task %><br><br>
+  <%= f.label :date, "Due Date" %><br>
+  <%= f.date_select :date %><br><br>
+  <%= f.submit class: "blue_button" %>
+  <%= f.hidden_field :task_list_id, value: @task_list_id %>
+<% end %>

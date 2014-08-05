@@ -92,3 +92,23 @@ main {
 #topbar {
   display: inline-block;
 }
+
+.blue_button {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.flash {
+  background-color: lawngreen;
+  height: 50px;
+  border: solid black 1px;
+}
+
+.errors {
+  color: maroon;
+}
+
+.right_float {
+  float: right;
+  margin-left: 15px;
+}
