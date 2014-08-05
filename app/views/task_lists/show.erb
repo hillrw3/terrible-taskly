@@ -2,8 +2,15 @@
 <div id="topbar"><a href="/task_lists/new">+ Add Task List</a></div>
 
 <h1><%= @task_list.name %></h1>
-<ul>
-  <% @tasks.each do |task| %>
-    <li><%= task.task %></li>
-  <% end %>
-</ul>
+<div class="right_float"><a href="/tasks/<%= @task_list.id %>/new">+ Add Task</a></div>
+<div class="right_float"><a href="/task_lists/<%= @task_list.id %>/edit">Edit</a></div>
+<section class="task-list">
+  <ul>
+    <% @tasks.each do |task| %>
+      <li>
+        <%= task.task %>
+        <div class="right_float"><%= link_to 'Delete', task_path(id: task.id), method: :delete %></div>
+      </li>
+    <% end %>
+  </ul>
+</section>

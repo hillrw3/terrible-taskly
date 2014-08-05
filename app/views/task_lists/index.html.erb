@@ -9,15 +9,18 @@
 
   <section class="task-list">
     <dl>
+      <dt>
       <div id="topbar">
-        <dt><h1><a href='/task_lists/<%=task_list.id%>'><%= task_list.name %></a></h1></dt>
-        <% @tasks.each do |task| %>
-          <dd><%= task.task if task.task_lists_id == task_list.id %></dd>
-        <% end %>
+        <h1><a href='/task_lists/<%= task_list.id %>'><%= task_list.name %></a></h1>
       </div>
+      <div id="topbar" class="right_float"><a href="/tasks/<%= task_list.id %>/new">+ Add Task</a></div>
+      <div id="topbar" class="right_float"><a href="/task_lists/<%= task_list.id %>/edit">Edit</a></div>
+      </dt>
+      <% @tasks.each do |task| %>
+        <dd><%= task.task if task.task_lists_id == task_list.id %></dd>
+      <% end %>
     </dl>
-    <div id="topbar" class="right_float"><a href="/tasks/<%= task_list.id %>/new">+ Add Task</a></div>
-    <div id="topbar" class="right_float"><a href="/task_lists/<%= task_list.id %>/edit">Edit</a></div>
+
   </section>
 
 <% end %>
