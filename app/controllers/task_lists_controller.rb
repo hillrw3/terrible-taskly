@@ -37,17 +37,17 @@ class TaskListsController < ApplicationController
 
   def show
     @task_list = TaskList.find(params[:id])
-    @tasks = Task.where(task_lists_id: params[:id], complete: false).order('date')
+    @tasks = Task.where(task_list_id: params[:id], complete: false).order('date')
   end
 
   def completed
     @task_list = TaskList.find(params[:id])
-    @tasks = Task.where(task_lists_id: params[:id], complete: true).order('date')
+    @tasks = Task.where(task_list_id: params[:id], complete: true).order('date')
   end
 
   def destroy
     @task_lists = TaskList.find(params[:id])
-    Task.where(task_lists_id: params[:id]).destroy_all
+    Task.where(task_list_id: params[:id]).destroy_all
     TaskList.find(params[:id]).destroy
     flash[:notice] = "Task List was deleted successfully!"
     redirect_to root_path

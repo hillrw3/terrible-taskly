@@ -16,15 +16,19 @@
       <div id="topbar" class="right_float"><a href="/tasks/<%= task_list.id %>/new">+ Add Task</a></div>
       <div id="topbar" class="right_float"><a href="/task_lists/<%= task_list.id %>/edit">Edit</a></div>
       </dt>
-      <% @tasks.each do |task| %>
-        <dd>
-          <p>
-            <%= task.task if task.task_lists_id == task_list.id %>
-            <% if task.task_lists_id == task_list.id %>
-              <%= "(#{(task.date - Date.today).to_i} days)" %>
-            <% end %>
-          </p>
-        </dd>
+      <% if task_list.tasks.empty? %>
+        <dd class="centered_text">Nothing here to see!</dd>
+      <% else %>
+        <% @tasks.each do |task| %>
+          <dd>
+            <p>
+              <%= task.task if task.task_list_id == task_list.id %>
+              <% if task.task_list_id == task_list.id %>
+                <%= "(#{(task.date - Date.today).to_i} days)" %>
+              <% end %>
+            </p>
+          </dd>
+        <% end %>
       <% end %>
     </dl>
 

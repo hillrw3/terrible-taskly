@@ -104,4 +104,40 @@ feature 'Task lists' do
     expect(page).to have_no_content "Work List"
   end
 
+  scenario "If a task list has no tasks a message will be displayed" do
+    create_user email: "user@example.com"
+    TaskList.create!(name: "Work List")
+    visit signin_path
+    click_on "Login"
+    fill_in "Email", with: "user@example.com"
+    fill_in "Password", with: "password"
+    click_on "Login"
+    expect(page).to have_content("Work List")
+    expect(page).to have_content("Nothing here to see!")
+
+    click_on "+ Add Task"
+    fill_in "task[task]", with: "Clean"
+    click_on 'Create Task'
+    expect(page).to have_content("Work List")
+    expect(page).to have_content("Clean")
+    expect(page).to have_no_content("Nothing here to see!")
+  end
+
+  scenario "User can assign a task to another user when adding a new task" do
+    create_user email: "user@example.com"
+    User.create!(name: "Rob", email: "rob@example.com", password: "password")
+    TaskList.create!(name: "Work List")
+    visit signin_path
+    click_on "Login"
+    fill_in "Email", with: "user@example.com"
+    fill_in "Password", with: "password"
+    click_on "Login"
+    expect(page).to have_content("Work List")
+    click_on "+ Add Task"
+    fill_in "task[task]", with: "Clean"
+    select 'Rob', from: 'Assigned to'
+    click_on 'Create Task'
+    expect(page).to have_content("Rob")
+  end
+
 end

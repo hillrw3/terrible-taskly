@@ -9,7 +9,7 @@ class TasksController < ApplicationController
     date = "#{params[:task]["date(1i)"]}-#{params[:task]["date(2i)"]}-#{params[:task]["date(3i)"]}"
     @task = Task.new(task: params[:task][:task],
                      date: date,
-                     task_lists_id: params[:task][:task_list_id])
+                     task_list_id: params[:task][:task_list_id])
     if @task.save
       flash[:notice] = "Task was created successfully!"
       redirect_to '/'
