@@ -1,12 +1,10 @@
 <div id="topbar"><h1>My Lists</h1></div>
 <div id="topbar"><a href="/task_lists/new">+ Add Task List</a></div>
 
-<h1><%= @task_list.name %></h1>
+<h1><%= @task_list.name %> - Completed</h1>
 <div class="right_float"><a href="/tasks/<%= @task_list.id %>/new">+ Add Task</a></div>
 <div class="right_float"><a href="/task_lists/<%= @task_list.id %>/edit">Edit</a></div>
 <div class="right_float"><a href="/task_lists/<%= @task_list.id %>/completed">Completed</a></div>
-<div class="right_float"><%= link_to "Delete List", task_list_path(id: @task_list.id), method: :delete %></div>
-
 <section class="task-list">
   <ul>
     <% @tasks.each do |task| %>
@@ -14,7 +12,6 @@
         <%= task.task %>
         <%= "(#{(task.date - Date.today).to_i} days)" %>
         <div class="right_float"><%= link_to 'Delete', task_path(id: task.id), method: :delete %></div>
-        <div class="right_float"><a href="/tasks/<%= task.id %>/complete">Complete</a></div>
       </li>
     <% end %>
   </ul>

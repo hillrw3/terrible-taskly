@@ -24,4 +24,11 @@ class TasksController < ApplicationController
     redirect_to(:back)
   end
 
+  def complete
+    @task = Task.find(params[:id])
+    @task.complete = true
+    @task.save
+    redirect_to :back
+  end
+
 end

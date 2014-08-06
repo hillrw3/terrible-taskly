@@ -105,10 +105,14 @@ main {
 }
 
 .errors {
-  color: maroon;
+  color: red;
 }
 
 .right_float {
   float: right;
   margin-left: 15px;
+}
+
+.field_with_errors input {
+  border: 1px solid red;
 }

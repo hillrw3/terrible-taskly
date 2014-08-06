@@ -17,7 +17,14 @@
       <div id="topbar" class="right_float"><a href="/task_lists/<%= task_list.id %>/edit">Edit</a></div>
       </dt>
       <% @tasks.each do |task| %>
-        <dd><%= task.task if task.task_lists_id == task_list.id %></dd>
+        <dd>
+          <p>
+            <%= task.task if task.task_lists_id == task_list.id %>
+            <% if task.task_lists_id == task_list.id %>
+              <%= "(#{(task.date - Date.today).to_i} days)" %>
+            <% end %>
+          </p>
+        </dd>
       <% end %>
     </dl>
 
