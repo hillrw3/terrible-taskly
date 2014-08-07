@@ -12,6 +12,11 @@
     <div class="logo">
       <%= link_to "Rails Practice", root_path %>
     </div>
+    <div class="search">
+      <%= form_tag('/tasks/search', method: :get) do %>
+        <%= text_field_tag 'search', nil, placeholder: 'Search for a task' %>
+      <% end %>
+    </div>
     <% if current_user %>
       <div class="logout">
         <%= current_user.email %> |

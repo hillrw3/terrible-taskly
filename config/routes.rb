@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get "tasks/:id/new" => "tasks#new"
   get '/tasks/:id/complete' => 'tasks#complete'
+  get 'tasks/search' => 'tasks#search'
 
   resources :task_lists
   resources :tasks

@@ -47,4 +47,10 @@ class TasksController < ApplicationController
     redirect_to :back
   end
 
+  def search
+    @search_term = params[:search]
+    @search_results = Task.where("task like ?", "%#{params[:search]}%")
+    p @search_results
+  end
+
 end

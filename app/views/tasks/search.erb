@@ -1,0 +1,9 @@
+<div id="topbar"><h1>Search results for '<%= @search_term %>'</h1></div>
+
+<div>
+<% @search_results.each do |result| %>
+<ul>
+  <li><%= result.task %></li>
+</ul>
+<% end  %>
+</div>
