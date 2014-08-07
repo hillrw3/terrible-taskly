@@ -45,6 +45,10 @@ class TaskListsController < ApplicationController
     @tasks = Task.where(task_list_id: params[:id], complete: true).order('date')
   end
 
+  def assigned
+    @tasks = Task.where(assigned_to: User.find(session[:user_id]).name)
+  end
+
   def destroy
     @task_lists = TaskList.find(params[:id])
     Task.where(task_list_id: params[:id]).destroy_all

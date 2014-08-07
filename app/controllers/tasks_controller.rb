@@ -8,6 +8,7 @@ class TasksController < ApplicationController
       @task = Task.new
       @users = []
       User.where.not(id: session[:user_id]).each do |user|
+        @users << "Me"
         @users << user.name
       end
       @users
@@ -16,7 +17,7 @@ class TasksController < ApplicationController
 
   def create
     date = "#{params[:task]["date(1i)"]}-#{params[:task]["date(2i)"]}-#{params[:task]["date(3i)"]}"
-    if date.to_date > Date.today
+    if date.to_date >= Date.today
       @task = Task.new(task: params[:task][:task],
                        date: date,
                        task_list_id: params[:task][:task_list_id],

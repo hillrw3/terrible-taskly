@@ -140,4 +140,27 @@ feature 'Task lists' do
     expect(page).to have_content("Rob")
   end
 
+  scenario "User can see a list of tasks assigned to them" do
+    create_user email: "user@example.com"
+    User.create!(name: "Rob", email: "rob@example.com", password: "password")
+    TaskList.create!(name: "Work List")
+    visit signin_path
+    click_on "Login"
+    fill_in "Email", with: "user@example.com"
+    fill_in "Password", with: "password"
+    click_on "Login"
+    expect(page).to have_content("Work List")
+    click_on "+ Add Task"
+    fill_in "task[task]", with: "Clean"
+    select 'Rob', from: 'Assigned to'
+    click_on 'Create Task'
+    expect(page).to have_content("Rob")
+    click_on "Logout"
+    fill_in "Email", with: "rob@example.com"
+    fill_in "Password", with: "password"
+    click_on "Login"
+    click_on "Assigned Tasks"
+    expect(page).to have_content("Clean")
+  end
+
 end
