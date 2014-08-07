@@ -25,7 +25,7 @@
               <%= task.task if task.task_list_id == task_list.id %>
               <% if task.task_list_id == task_list.id %>
                 <%= "(#{(task.date - Date.today).to_i} days)" %>
-                <%= " -  #{task.assigned_to} " if task.assigned_to %>
+                <span class=bold><%= " -  #{task.assigned_to} " if task.assigned_to %></span>
               <% end %>
             </p>
           </dd>

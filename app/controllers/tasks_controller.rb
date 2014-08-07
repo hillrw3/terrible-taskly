@@ -1,17 +1,22 @@
 class TasksController < ApplicationController
 
   def new
-    @task_list_id = params[:id]
-    @task = Task.new
-    @users = []
-    User.where.not(id: session[:user_id]).each do |user|
+    if session[:user_id] == nil
+      redirect_to '/signin'
+    else
+      @task_list_id = params[:id]
+      @task = Task.new
+      @users = []
+      User.where.not(id: session[:user_id]).each do |user|
         @users << user.name
+      end
+      @users
     end
-    @users
   end
 
   def create
     date = "#{params[:task]["date(1i)"]}-#{params[:task]["date(2i)"]}-#{params[:task]["date(3i)"]}"
+    
     @task = Task.new(task: params[:task][:task],
                      date: date,
                      task_list_id: params[:task][:task_list_id],
